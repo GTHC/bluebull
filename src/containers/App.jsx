@@ -7,6 +7,7 @@ import firebase from './../firebase';
 
 // containers
 import Login from './Login';
+import Nav from './Nav';
 
 import logo from './../images/logo.svg';
 
@@ -44,15 +45,15 @@ class App extends Component {
     console.log('user', user);
     return (
       <div className="App">
-
+        <Nav  />
         <div>
           {user ?
             <div>
               Welcome {user.displayName}
               <br />
-              <img src={user.photoURL} style={{ height: '50px'}} />
+              <img src={user.photoURL} style={{ height: '50px' }} />
               <br />
-              <Button variant="contained" onClick={() => {firebase.auth().signOut()}} >
+              <Button variant="contained" onClick={() => {firebase.auth().signOut(); }}>
                 Sign out
               </Button>
             </div>
