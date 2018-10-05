@@ -10,6 +10,7 @@
     "react-dom": "^16.5.1",
     "react-firebaseui": "^3.0.7",
     "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {

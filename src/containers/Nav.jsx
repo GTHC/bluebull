@@ -12,8 +12,8 @@ class Nav extends Component {
 
   render() {
     return (
-      <div>
-        <AppBar position="relative">
+      <div className="nav">
+        <AppBar>
         <Toolbar>
           <IconButton  color="inherit" aria-label="Menu">
             <MenuIcon />
