@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+
+// firebase
+import firebase from './../firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-import firebase from './../firebase';
+// material-ui
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+// image
+import background from '../images/tent.png';
+
+var sectionStyle = {
+  width: "110%",
+  height: "10000px",
+  backgroundImage: `url(${background})`,
+  backgroundRepeat: 'repeat'
+};
+
+const Transition = (props) => (
+  <Slide direction="down" {...props} />
+)
 
 class Login extends Component {
   constructor(props) {
@@ -23,12 +44,26 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="App">
-        Login
-        <StyledFirebaseAuth
-          uiConfig={this.uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
+      <div style={sectionStyle} className="login">
+        <Dialog
+          open
+          TransitionComponent={Transition}
+        >
+          <DialogTitle>{
+            <div style={{ textAlign: 'center'}}>Welcome to G.T.H.C.</div>
+          }</DialogTitle>
+          <DialogContent>
+            <DialogContentText >
+              {
+                <div style={{ textAlign: 'center'}}>Game Tent Help Center</div>
+              }
+            </DialogContentText>
+            <StyledFirebaseAuth
+              uiConfig={this.uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }

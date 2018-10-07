@@ -12,7 +12,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <div className="nav">
+      <div style={{ paddingBottom: '48px' }} >
         <AppBar positon="relative">
           <Toolbar>
             <IconButton  color="inherit" aria-label="Menu">
