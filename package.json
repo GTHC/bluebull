@@ -2,6 +2,7 @@
   "name": "bluebull",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://us-central1-gthc-kville.cloudfunctions.net",
   "dependencies": {
     "@material-ui/core": "^3.0.3",
     "@material-ui/icons": "^3.0.1",
