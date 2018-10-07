@@ -44,10 +44,8 @@ class App extends Component {
     const { login, logut, user } = this.props;
     firebase.auth().onAuthStateChanged(userData => {
       if (userData) {
-        console.log('User detected', userData);
         login(userData);
       } else {
-        console.log('User not detected');
         logout();
       }
     });
@@ -55,7 +53,6 @@ class App extends Component {
 
   render() {
     const { user, history } = this.props;
-    console.log('user', user);
     return (
         <ConnectedRouter history={history}>
           <ConnectedSwitch>
