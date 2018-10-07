@@ -12,7 +12,7 @@ import { login, logout } from '../actions/login';
 
 // material-ui
 import Button from '@material-ui/core/Button';
-import AvatarButton from './../components/Nav/AvatarButton'
+
 // components
 import Nav from './Nav';
 
