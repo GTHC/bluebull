@@ -6,7 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
-import createHistory from 'history/createBrowserHistory';
 
 // redux dev tools
 import { createDevTools } from 'redux-devtools';
@@ -16,6 +15,9 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 // redux persist
 import storage from 'redux-persist/es/storage';
 import { PersistGate } from 'redux-persist/es/integration/react';
+
+// material-ui
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 // containers
 import App from './containers/App';
@@ -33,6 +35,7 @@ ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <div>
+        <CssBaseline />
         <App history={history} />
         { process.env.NODE_ENV === 'development' ?
           <DevTools /> : null

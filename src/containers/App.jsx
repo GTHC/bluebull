@@ -4,35 +4,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Route, Redirect } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
-import ConnectedSwitch from '../utils/ConnectedSwitch';
-
 // redux actions
 import { login, logout } from '../actions/login';
 
-// material-ui
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Button from '@material-ui/core/Button';
+// routing
+import { Route, Redirect } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+import ConnectedSwitch from '../utils/ConnectedSwitch';
 
 // firebase
 import firebase from './../firebase';
 
 // containers
 import Login from './Login';
-
-// images
-import logo from './../images/logo.svg';
+import Home from './Home';
+import Nav from './Nav';
 
 // routes
 const AppRoutes = () => (
   <ConnectedSwitch>
-    {/* <Route exact path="/app" component={Home} />
-    <Route exact path="/app/" component={Home} />
-    <Route exact path="/app/dashboard" component={Dashboard} />
-    <Route exact path="/app/user" component={UserProfile} />
-    <Route exact path="/app/team" component={TeamProfile} />
-    <Route exact path="/app/*" component={Home} /> */}
+    <Route exact path="/app" component={Home} />
   </ConnectedSwitch>
 );
 
@@ -63,30 +54,29 @@ class App extends Component {
   };
 
   render() {
-    const { user, logout } = this.props;
+    const { user, history } = this.props;
     console.log('user', user);
     return (
-      <div className="App">
-
-        <div>
-          {user.isLoggedIn ?
-            <div>
-              Welcome {user.data.displayName}
-              <br />
-              <img src={user.data.photoURL} style={{ height: '50px' }} />
-              <br />
-              <Button variant="contained" onClick={() => {
-                firebase.auth().signOut();
-                logout();
-              }} >
-                Sign out
-              </Button>
-            </div>
-          :
-            <Login />
-          }
-        </div>
-      </div>
+        <ConnectedRouter history={history}>
+          <ConnectedSwitch>
+            <Route exact path="/" render={() => {
+              console.log('user.isLoggedIn', user.isLoggedIn);
+              return (user.isLoggedIn ?
+                <Redirect to="/app" /> :
+                <Redirect to="/login" />)
+            }}/>
+            <Route path="/app" render={() => (
+              user.isLoggedIn ?
+              <AppRoutes /> :
+              <Redirect to="/login" />
+            )} />
+            <Route path="/login" render={() => (
+              user.isLoggedIn ?
+              <Redirect to="/app" /> :
+              <Login />
+            )} />
+          </ConnectedSwitch>
+        </ConnectedRouter>
     );
   }
 }
