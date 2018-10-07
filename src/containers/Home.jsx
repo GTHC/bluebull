@@ -12,7 +12,7 @@ import { login, logout } from '../actions/login';
 
 // material-ui
 import Button from '@material-ui/core/Button';
-
+import AvatarButton from './../components/Nav/AvatarButton'
 // components
 import Nav from './Nav';
 
@@ -31,7 +31,7 @@ class Home extends Component {
     const { user, logout } = this.props;
     return (
       <div className="App">
-        <Nav />
+        <Nav user={user} />
         Home
         <div>
           Welcome {user.data.displayName}
