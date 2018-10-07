@@ -11,15 +11,18 @@ const crud = request => (dispatch) => {
       data: request.data ? request.data : null,
     })
     .then((res) => {
+      console.log('res', res)
       dispatch({
             type: request.dispatch.end,
-            payload: res,
+            payload: res.data,
+            fullResponse: res,
           });
       if (request.push) {
         dispatch(push(request.push));
       }
     })
     .catch((err) => {
+      console.log('err', err)
       dispatch({
         type: request.dispatch.fail,
         payload: err,
