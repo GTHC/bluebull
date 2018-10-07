@@ -4,7 +4,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 import firebase from './../firebase';
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,8 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
+        Login
         <StyledFirebaseAuth
           uiConfig={this.uiConfig}
           firebaseAuth={firebase.auth()}

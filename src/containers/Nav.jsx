@@ -13,17 +13,18 @@ class Nav extends Component {
   render() {
     return (
       <div className="nav">
-        <AppBar>
-        <Toolbar>
-          <IconButton  color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="title" color="inherit">
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
+        <AppBar positon="relative">
+          <Toolbar>
+            <IconButton  color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit">
+              News
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+        <div styles={{color:'red'}}></div>
       </div>
     );
   }
