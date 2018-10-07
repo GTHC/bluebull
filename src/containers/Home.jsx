@@ -16,34 +16,18 @@ import Button from '@material-ui/core/Button';
 // components
 import Nav from './Nav';
 
-// const Test = () => (
-//   <div>
-//     {user.isLoggedIn ?
-//     :
-//       <Login />
-//     }
-//   </div>
-// );
-
 class Home extends Component {
 
   render() {
     const { user, logout } = this.props;
     return (
       <div className="App">
-        <Nav />
+        <Nav user={user} />
         Home
         <div>
-          Welcome {user.data.displayName}
-          <br />
-          <img src={user.data.photoURL} style={{ height: '50px' }} />
-          <br />
-          <Button variant="contained" onClick={() => {
-            firebase.auth().signOut();
-            logout();
-          }} >
-            Sign out
-          </Button>
+          <h1>
+            Welcome {user.data.displayName}
+          </h1>
         </div>
       </div>
     );
