@@ -46,11 +46,13 @@ class StepTwoCreate extends Component {
   }
 
   handleTextField = e => {
+    let value = e.target.value;
+    if (e.target.id == 'tentNumber' && value < 1) {
+      value = 1;
+    }
     this.setState({
-      [e.target.id]: e.target.value,
+      [e.target.id]: value,
     });
-
-    console.log(e.target.id + " " + e.target.value);
   }
 
   render() {
@@ -65,48 +67,53 @@ class StepTwoCreate extends Component {
           </div>
         }</DialogTitle>
         <DialogContent>
-          <TextField
-            required
-            id="tentName"
-            label="Team Name"
-            fullWidth
-            margin="normal"
-            variant="filled"
-            onChange={this.handleTextField}
-          />
-        <div style={{ textAlign: 'center' }}>
-          <TextField
-              id="filled-select-currency-native"
-              select
-              label="Select"
+
+          <div style={{ textAlign: 'center' }}>
+            <TextField
+              required
+              id="tentName"
+              label="Team Name"
+              margin="normal"
+              variant="outlined"
+              onChange={this.handleTextField}
+            />
+            <br />
+            <TextField
+              required
+              type={'number'}
+              id="tentNumber"
+              label="Tent Number"
               className={classes.textField}
-              value={this.state.tentType}
-              onChange={this.handleTentType}
-              SelectProps={{
-                native: true,
-                MenuProps: {
-                  className: classes.menu,
-                },
-              }}
-              helperText="Please select your tent type"
               margin="normal"
               variant="filled"
-            >
-            {tentTypes.map(val => (
-              <option key={val} value={val}>
-                {val}
-              </option>
-            ))}
-          </TextField>
-          <TextField
-            required
-            id="tentNumber"
-            label="Tent Number"
-            className={classes.textField}
-            margin="normal"
-            variant="filled"
-          />
-        </div>
+              onChange={this.handleTextField}
+              value={this.state.tentNumber}
+            />
+            <br />
+            <TextField
+                id="filled-select-currency-native"
+                select
+                label="Select"
+                className={classes.textField}
+                value={this.state.tentType}
+                onChange={this.handleTentType}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu,
+                  },
+                }}
+                helperText="Please select your tent type"
+                margin="normal"
+                variant="filled"
+              >
+              {tentTypes.map(val => (
+                <option key={val} value={val}>
+                  {val}
+                </option>
+              ))}
+            </TextField>
+          </div>
         </DialogContent>
       </div>
     );

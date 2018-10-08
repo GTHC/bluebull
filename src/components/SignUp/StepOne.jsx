@@ -11,7 +11,8 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing.unit,
   },
   leftIcon: {
     marginRight: theme.spacing.unit,
@@ -45,7 +46,7 @@ class StepOne extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div style={{ textAlign: 'center'}}>
         <DialogTitle>{
           <div style={{ textAlign: 'center'}}>Seems like you don't have a team!</div>
         }</DialogTitle>

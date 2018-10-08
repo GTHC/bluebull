@@ -13,6 +13,7 @@ import Slide from '@material-ui/core/Slide';
 import StepOne from './StepOne';
 import StepTwoJoin from './StepTwoJoin';
 import StepTwoCreate from './StepTwoCreate';
+import SignUpStepper from './SignUpStepper';
 
 const Transition = (props) => (
   <Slide timeout={{ enter: 50000 }} direction="down" {...props} />
@@ -89,14 +90,17 @@ class SignUp extends Component {
   }
 
   render() {
-    const { open } = this.state;
+    const { open, step, type } = this.state;
     return (
-      <div>
+      <div className="signup">
         <Dialog
           open={open}
+          maxWidth={false}
+          scroll="body"
           TransitionComponent={Transition}
         >
           {this.renderStep()}
+          <SignUpStepper step={step - 1} type={type}/>
           {this.renderButtons()}
         </Dialog>
       </div>
