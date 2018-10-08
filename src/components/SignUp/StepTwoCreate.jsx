@@ -1,22 +1,117 @@
 import React, { Component } from 'react';
 
 // material-ui
+import { withStyles } from '@material-ui/core/styles';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import TextField from '@material-ui/core/TextField';
+
+// styles from https://material-ui.com/demos/text-fields/
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+});
+
 
 class StepTwoCreate extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      tentName: '',
+      tentType: 'Black',
+      tentNumber: '',
+    }
+    this.handleTentType = this.handleTentType.bind(this);
+    this.handleTextField = this.handleTextField.bind(this)
+  }
+
+  handleTentType = e => {
+    const tentType = e.target.value;
+    this.setState({ tentType });
+  }
+
+  handleTextField = e => {
+    this.setState({
+      [e.target.id]: e.target.value,
+    });
+
+    console.log(e.target.id + " " + e.target.value);
+  }
+
   render() {
+    const tentTypes = ['Black', 'Dirty Black', 'Blue', 'Dirty Blue', 'White'];
+    const { classes } = this.props;
     return (
       <div>
         <DialogTitle>{
-          <div style={{ textAlign: 'center'}}>Create Team</div>
+          <div>
+            <div style={{ textAlign: 'center'}}>Create Team <GroupAddIcon /></div>
+
+          </div>
         }</DialogTitle>
+        <DialogContent>
+          <TextField
+            required
+            id="tentName"
+            label="Team Name"
+            fullWidth
+            margin="normal"
+            variant="filled"
+            onChange={this.handleTextField}
+          />
+        <div style={{ textAlign: 'center' }}>
+          <TextField
+              id="filled-select-currency-native"
+              select
+              label="Select"
+              className={classes.textField}
+              value={this.state.tentType}
+              onChange={this.handleTentType}
+              SelectProps={{
+                native: true,
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              helperText="Please select your tent type"
+              margin="normal"
+              variant="filled"
+            >
+            {tentTypes.map(val => (
+              <option key={val} value={val}>
+                {val}
+              </option>
+            ))}
+          </TextField>
+          <TextField
+            required
+            id="tentNumber"
+            label="Tent Number"
+            className={classes.textField}
+            margin="normal"
+            variant="filled"
+          />
+        </div>
+        </DialogContent>
       </div>
     );
   }
 
 }
 
-export default StepTwoCreate;
+export default withStyles(styles)(StepTwoCreate);
