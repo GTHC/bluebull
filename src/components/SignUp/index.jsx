@@ -14,6 +14,7 @@ import Slide from '@material-ui/core/Slide';
 import StepOne from './StepOne';
 import StepTwoJoin from './StepTwoJoin';
 import StepTwoCreate from './StepTwoCreate';
+import StepThree from './StepThree';
 import SignUpStepper from './SignUpStepper';
 
 const Transition = (props) => (
@@ -67,6 +68,9 @@ class SignUp extends Component {
           return <StepTwoCreate />
         }
         break;
+      }
+      case 3: {
+        return <StepThree />
       }
       default: {
         return <StepOne changeStep={this.changeStep} setType={this.setType} />
