@@ -38,7 +38,7 @@ class StepOne extends Component {
   }
 
   createTeam = () => {
-    this.props.setType('change');
+    this.props.setType('create');
     this.props.changeStep();
   }
 
@@ -54,25 +54,26 @@ class StepOne extends Component {
             {
               <div style={{ textAlign: 'center'}}>Before you continue, choose one of the following: </div>
             }
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={this.joinTeam}
-            >
-              Join a Team
-              <GroupIcon className={classes.rightIcon}/>
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              onClick={this.createTeam}
-            >
-              Create a Team
-              <GroupAddIcon className={classes.rightIcon}/>
-            </Button>
           </DialogContentText>
+          <br />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={this.joinTeam}
+          >
+            Join a Team
+            <GroupIcon className={classes.rightIcon}/>
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={this.createTeam}
+          >
+            Create a Team
+            <GroupAddIcon className={classes.rightIcon}/>
+          </Button>
         </DialogContent>
       </div>
     );
