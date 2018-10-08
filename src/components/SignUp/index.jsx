@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 // material-ui
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -17,7 +18,15 @@ import SignUpStepper from './SignUpStepper';
 
 const Transition = (props) => (
   <Slide timeout={{ enter: 50000 }} direction="down" {...props} />
-)
+);
+
+const styles = theme => ({
+  button: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+});
+
 
 class SignUp extends Component {
   constructor(props) {
@@ -69,16 +78,21 @@ class SignUp extends Component {
     if (this.state.step == 1) {
       return null;
     }
+    const { classes } = this.props;
     return (
       <div>
         <DialogActions>
           <Button
+            className={classes.button}
+            size="large"
             variant="contained"
             onClick={() => {this.changeStep(false)}}
           >
               Back
             </Button>
             <Button
+              className={classes.button}
+              size="large"
               variant="contained"
               onClick={this.changeStep}
             >
@@ -94,6 +108,7 @@ class SignUp extends Component {
     return (
       <div className="signup">
         <Dialog
+          fullScreen
           open={open}
           maxWidth={false}
           scroll="body"
@@ -109,4 +124,4 @@ class SignUp extends Component {
 
 }
 
-export default SignUp;
+export default withStyles(styles)(SignUp);
