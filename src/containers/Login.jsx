@@ -22,7 +22,7 @@ var sectionStyle = {
 };
 
 const Transition = (props) => (
-  <Slide direction="down" {...props} />
+  <Slide timeout={{ enter: 50000 }} direction="down" {...props} />
 )
 
 class Login extends Component {

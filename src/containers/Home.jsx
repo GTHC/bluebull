@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 
 // components
 import Nav from './Nav';
+import SignUp from '../components/SignUp';
 
 class Home extends Component {
 
@@ -22,6 +23,7 @@ class Home extends Component {
     const { user, logout } = this.props;
     return (
       <div className="App">
+        <SignUp />
         <Nav user={user} />
         Home
         <div>
