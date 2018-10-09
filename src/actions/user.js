@@ -1,7 +1,5 @@
 import crud from './utils/crud';
 
-const url = "https://us-central1-gthc-kville.cloudfunctions.net"
-
 const getUser = (id) => (
   crud({
     dispatch: {

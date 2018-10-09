@@ -52,6 +52,10 @@ class StepTwoCreate extends Component {
     }
     this.setState({
       [e.target.id]: value,
+    }, () => {
+      this.props.updateData({
+        ...this.state,
+      })
     });
   }
 
@@ -91,12 +95,12 @@ class StepTwoCreate extends Component {
             />
             <br />
             <TextField
-                id="filled-select-currency-native"
+                id="tentType"
                 select
                 label="Select"
                 className={classes.textField}
                 value={this.state.tentType}
-                onChange={this.handleTentType}
+                onChange={this.handleTextField}
                 SelectProps={{
                   native: true,
                   MenuProps: {

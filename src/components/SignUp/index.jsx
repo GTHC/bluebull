@@ -36,6 +36,7 @@ class SignUp extends Component {
       open: true,
       step: 1,
       type: 'join',
+      data: {}
     }
     this.changeStep = this.changeStep.bind(this);
     this.setType = this.setType.bind(this);
@@ -45,9 +46,10 @@ class SignUp extends Component {
 
   changeStep = (inc=true) => {
     const { step, open } = this.state;
+    const newStep = inc ? step + 1 : step - 1;
     this.setState({
-      step: inc ? step + 1 : step - 1,
-      open: step >= 4 ? false : true,
+      step: newStep,
+      open: newStep > 4 ? false : true,
     });
   }
 
@@ -55,6 +57,11 @@ class SignUp extends Component {
     this.setState({ type });
   }
 
+  updateData = data => {
+    this.setState({ data })
+  }
+
+  // render helper functions
   renderStep = () => {
     const { step, type } = this.state;
     switch (step) {
@@ -63,9 +70,9 @@ class SignUp extends Component {
       }
       case 2: {
         if (type == 'join') {
-          return <StepTwoJoin />
+          return <StepTwoJoin updateData={this.updateData} />
         } else if (type == 'create') {
-          return <StepTwoCreate />
+          return <StepTwoCreate updateData={this.updateData} />
         }
         break;
       }
@@ -83,6 +90,7 @@ class SignUp extends Component {
       return null;
     }
     const { classes } = this.props;
+    const { step } = this.state;
     return (
       <div>
         <DialogActions>
@@ -100,7 +108,7 @@ class SignUp extends Component {
               variant="contained"
               onClick={this.changeStep}
             >
-              Next
+              {step === 4 ? "Confirm" : "Next" }
             </Button>
         </DialogActions>
       </div>
