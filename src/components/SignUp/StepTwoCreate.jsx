@@ -26,7 +26,6 @@ const styles = theme => ({
   },
 });
 
-
 class StepTwoCreate extends Component {
 
   constructor(props) {
@@ -35,38 +34,39 @@ class StepTwoCreate extends Component {
       tentName: '',
       tentType: 'Black',
       tentNumber: '',
-    }
+    };
     this.handleTentType = this.handleTentType.bind(this);
-    this.handleTextField = this.handleTextField.bind(this)
+    this.handleTextField = this.handleTextField.bind(this);
   }
 
   handleTentType = e => {
     const tentType = e.target.value;
     this.setState({ tentType });
-  }
+  };
 
   handleTextField = e => {
     let value = e.target.value;
     if (e.target.id == 'tentNumber' && value < 1) {
       value = 1;
     }
+
     this.setState({
       [e.target.id]: value,
     }, () => {
       this.props.updateData({
         ...this.state,
-      })
+      });
     });
-  }
+  };
 
   render() {
     const tentTypes = ['Black', 'Dirty Black', 'Blue', 'Dirty Blue', 'White'];
-    const { classes } = this.props;
+    const { classes, errorData } = this.props;
     return (
       <div>
         <DialogTitle>{
           <div>
-            <div style={{ textAlign: 'center'}}>Create Team <GroupAddIcon /></div>
+            <div style={{ textAlign: 'center' }}> Create Team <GroupAddIcon /></div>
 
           </div>
         }</DialogTitle>
@@ -74,6 +74,7 @@ class StepTwoCreate extends Component {
 
           <div style={{ textAlign: 'center' }}>
             <TextField
+              error={errorData.tentName}
               required
               id="tentName"
               label="Team Name"
@@ -83,6 +84,7 @@ class StepTwoCreate extends Component {
             />
             <br />
             <TextField
+              error={errorData.tentNumber}
               required
               type={'number'}
               id="tentNumber"
@@ -95,21 +97,22 @@ class StepTwoCreate extends Component {
             />
             <br />
             <TextField
-                id="tentType"
-                select
-                label="Select"
-                className={classes.textField}
-                value={this.state.tentType}
-                onChange={this.handleTextField}
-                SelectProps={{
-                  native: true,
-                  MenuProps: {
-                    className: classes.menu,
-                  },
-                }}
-                helperText="Please select your tent type"
-                margin="normal"
-                variant="filled"
+              error={errorData.tentType}
+              id="tentType"
+              select
+              label="Select"
+              className={classes.textField}
+              value={this.state.tentType}
+              onChange={this.handleTextField}
+              SelectProps={{
+                native: true,
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              helperText="Please select your tent type"
+              margin="normal"
+              variant="filled"
               >
               {tentTypes.map(val => (
                 <option key={val} value={val}>

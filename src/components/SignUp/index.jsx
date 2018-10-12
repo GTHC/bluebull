@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import Typography from '@material-ui/core/Typography';
 
 // components
 import StepOne from './StepOne';
@@ -28,7 +29,6 @@ const styles = theme => ({
   },
 });
 
-
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -36,59 +36,105 @@ class SignUp extends Component {
       open: true,
       step: 1,
       type: 'join',
-      data: {}
-    }
+      errorData: {
+        error: true,
+      },
+      showError: false,
+      data: {},
+    };
+
     this.changeStep = this.changeStep.bind(this);
     this.setType = this.setType.bind(this);
     this.renderStep = this.renderStep.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
+    this.renderError = this.renderError.bind(this);
   }
 
   changeStep = (inc=true) => {
-    const { step, open } = this.state;
-    const newStep = inc ? step + 1 : step - 1;
-    this.setState({
-      step: newStep,
-      open: newStep > 4 ? false : true,
-    });
-  }
+    const { step, open, errorData } = this.state;
+    if (errorData.error && step == 2) { // if error exists, then don't change step
+      this.setState({
+        showError: true,
+      });
+    } else {
+      const newStep = inc ? step + 1 : step - 1;
+      this.setState({
+        step: newStep,
+        open: newStep > 4 ? false : true,
+        showError: false,
+      });
+    }
+  };
 
   setType = (type) => {
     this.setState({ type });
-  }
+  };
 
   updateData = data => {
-    this.setState({ data })
-  }
+    const { type } = this.state;
+
+    // internal function to check if there are any empty elements in data Obj
+    const isDataEmpty = () => {
+      let isEmpty = false;
+      Object.keys(data).forEach(key => {
+        if (data[key] == '') {
+          isEmpty = true;
+        }
+      });
+      return isEmpty;
+    };
+
+    if (type == 'create' && isDataEmpty()) {
+      this.setState({
+        errorData: {
+          error: true,
+          tentType: data.tentType == '',
+          tentName: data.tentName == '',
+          tentNumber: data.tentNumber == '',
+        },
+        data,
+      });
+    } else {
+      this.setState({
+        errorData: { error: false },
+        data,
+      });
+    }
+  };
 
   // render helper functions
   renderStep = () => {
-    const { step, type } = this.state;
+    const { step, type, errorData } = this.state;
     switch (step) {
       case 1: {
-        return <StepOne changeStep={this.changeStep} setType={this.setType} />
+        return <StepOne changeStep={this.changeStep} setType={this.setType} />;
       }
+
       case 2: {
         if (type == 'join') {
-          return <StepTwoJoin updateData={this.updateData} />
+          return <StepTwoJoin updateData={this.updateData} />;
         } else if (type == 'create') {
-          return <StepTwoCreate updateData={this.updateData} />
+          return <StepTwoCreate updateData={this.updateData} errorData={errorData} />;
         }
+
         break;
       }
+
       case 3: {
-        return <StepThree />
+        return <StepThree />;
       }
+
       default: {
-        return <StepOne changeStep={this.changeStep} setType={this.setType} />
+        return <StepOne changeStep={this.changeStep} setType={this.setType} />;
       }
     }
-  }
+  };
 
   renderButtons = () => {
     if (this.state.step == 1) {
       return null;
     }
+
     const { classes } = this.props;
     const { step } = this.state;
     return (
@@ -98,7 +144,7 @@ class SignUp extends Component {
             className={classes.button}
             size="large"
             variant="contained"
-            onClick={() => {this.changeStep(false)}}
+            onClick={() => {this.changeStep(false);}}
           >
               Back
             </Button>
@@ -108,12 +154,21 @@ class SignUp extends Component {
               variant="contained"
               onClick={this.changeStep}
             >
-              {step === 4 ? "Confirm" : "Next" }
+              {step === 4 ? 'Confirm' : 'Next' }
             </Button>
         </DialogActions>
       </div>
     );
-  }
+  };
+
+  renderError = () => (
+    !this.state.showError ? null :
+    <div style={{ color: 'red' }}>
+      <Typography color="inherit" align="center">
+        Make sure you fill in all details.
+      </Typography>
+    </div>
+  );
 
   render() {
     const { open, step, type } = this.state;
@@ -127,6 +182,7 @@ class SignUp extends Component {
           TransitionComponent={Transition}
         >
           {this.renderStep()}
+          {this.renderError()}
           <SignUpStepper step={step - 1} type={type}/>
           {this.renderButtons()}
         </Dialog>
