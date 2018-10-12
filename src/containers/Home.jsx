@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 
 // redux actions
 import { login, logout } from '../actions/login';
+import { updateSUDataRedux, resetSUDataRedux } from '../actions/signup';
 
 // material-ui
 import Button from '@material-ui/core/Button';
@@ -20,10 +21,16 @@ import SignUp from '../components/SignUp';
 class Home extends Component {
 
   render() {
-    const { user, logout } = this.props;
+    const { user, logout, signup, updateSUDataRedux, resetSUDataRedux } = this.props;
+    const signupRedux = {
+      signup,
+      updateSUDataRedux,
+      resetSUDataRedux,
+    };
+
     return (
       <div className="App">
-        <SignUp />
+        <SignUp redux={signupRedux} />
         <Nav user={user} />
         Home
         <div>
@@ -40,6 +47,7 @@ class Home extends Component {
 // connecting to redux
 const mapStateToProps = (state) => ({
   user: state.user,
+  signup: state.signup,
 });
 
 const mapDispatchToProps = (dispatch) => (
@@ -47,6 +55,8 @@ const mapDispatchToProps = (dispatch) => (
     {
       login,
       logout,
+      updateSUDataRedux,
+      resetSUDataRedux,
     },
     dispatch)
 );

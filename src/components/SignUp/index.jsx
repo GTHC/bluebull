@@ -32,6 +32,7 @@ const styles = theme => ({
 class SignUp extends Component {
   constructor(props) {
     super(props);
+    const { signup } = this.props.redux;
     this.state = {
       open: true,
       step: 1,
@@ -40,7 +41,6 @@ class SignUp extends Component {
         error: true,
       },
       showError: false,
-      data: {},
     };
 
     this.changeStep = this.changeStep.bind(this);
@@ -52,12 +52,17 @@ class SignUp extends Component {
 
   changeStep = (inc=true) => {
     const { step, open, errorData } = this.state;
-    if (errorData.error && step == 2) { // if error exists, then don't change step
+    if (errorData.error && step == 2 && inc) { // if error exists, then don't change step
       this.setState({
         showError: true,
       });
     } else {
       const newStep = inc ? step + 1 : step - 1;
+
+      if (newStep == 1) {
+        this.props.redux.resetSUDataRedux();
+      }
+
       this.setState({
         step: newStep,
         open: newStep > 4 ? false : true,
@@ -72,6 +77,7 @@ class SignUp extends Component {
 
   updateData = data => {
     const { type } = this.state;
+    const { updateSUDataRedux } = this.props.redux;
 
     // internal function to check if there are any empty elements in data Obj
     const isDataEmpty = () => {
@@ -100,11 +106,14 @@ class SignUp extends Component {
         data,
       });
     }
+
+    updateSUDataRedux(data);
   };
 
   // render helper functions
   renderStep = () => {
     const { step, type, errorData } = this.state;
+    const { signup } = this.props.redux;
     switch (step) {
       case 1: {
         return <StepOne changeStep={this.changeStep} setType={this.setType} />;
@@ -114,7 +123,13 @@ class SignUp extends Component {
         if (type == 'join') {
           return <StepTwoJoin updateData={this.updateData} />;
         } else if (type == 'create') {
-          return <StepTwoCreate updateData={this.updateData} errorData={errorData} />;
+          return (
+            <StepTwoCreate
+              data={signup}
+              updateData={this.updateData}
+              errorData={errorData}
+            />
+          );
         }
 
         break;
