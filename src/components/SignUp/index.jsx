@@ -16,6 +16,7 @@ import StepOne from './StepOne';
 import StepTwoJoin from './StepTwoJoin';
 import StepTwoCreate from './StepTwoCreate';
 import StepThree from './StepThree';
+import Confirm from './Confirm';
 import SignUpStepper from './SignUpStepper';
 
 const Transition = (props) => (
@@ -52,7 +53,8 @@ class SignUp extends Component {
 
   changeStep = (inc=true) => {
     const { step, open, errorData } = this.state;
-    if (errorData.error && step == 2 && inc) { // if error exists, then don't change step
+    console.log('inc', inc);
+    if (errorData.error && step == 2 && inc !== false) { // if error exists, then don't change step
       this.setState({
         showError: true,
       });
@@ -137,6 +139,10 @@ class SignUp extends Component {
 
       case 3: {
         return <StepThree />;
+      }
+
+      case 4: {
+        return <Confirm />;
       }
 
       default: {

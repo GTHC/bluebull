@@ -30,12 +30,6 @@ class StepTwoCreate extends Component {
 
   constructor(props) {
     super(props);
-    const { data } = props;
-    this.state = {
-      tentName: data.tentName || '',
-      tentType: data.tentType || 'Black',
-      tentNumber: data.tentNumber || 0,
-    };
     this.handleTentType = this.handleTentType.bind(this);
     this.handleTextField = this.handleTextField.bind(this);
   }
@@ -63,7 +57,7 @@ class StepTwoCreate extends Component {
   render() {
     const tentTypes = ['Black', 'Dirty Black', 'Blue', 'Dirty Blue', 'White'];
     const { classes, errorData } = this.props;
-    const { tentName, tentType, tentNumber } = this.state;
+    const { tentName, tentType, tentNumber } = this.props.data;
     return (
       <div>
         <DialogTitle>{
@@ -105,7 +99,6 @@ class StepTwoCreate extends Component {
               select
               label="Select"
               className={classes.textField}
-              value={this.state.tentType}
               onChange={this.handleTextField}
               SelectProps={{
                 native: true,

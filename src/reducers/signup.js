@@ -14,6 +14,11 @@ const signup = (state=initialState, action) => {
       return initialState;
     }
 
+    // when user first logins in, it makes sure SU data is not persisted
+    case 'LOGIN': {
+      return initialState;
+    }
+
     default: {
       return state;
     }
