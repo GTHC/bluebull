@@ -142,7 +142,7 @@ class SignUp extends Component {
       }
 
       case 4: {
-        return <Confirm />;
+        return <Confirm type={type} data={signup} />;
       }
 
       default: {

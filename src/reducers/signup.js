@@ -7,7 +7,10 @@ const initialState = {
 const signup = (state=initialState, action) => {
   switch (action.type) {
     case 'UPDATE_SU_DATA': {
-      return action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      };
     }
 
     case 'RESET_SU_DATA': {

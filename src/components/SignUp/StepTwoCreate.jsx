@@ -73,7 +73,7 @@ class StepTwoCreate extends Component {
               error={errorData.tentName}
               required
               id="tentName"
-              label="Team Name"
+              label="Tent Name"
               margin="normal"
               variant="outlined"
               onChange={this.handleTextField}
