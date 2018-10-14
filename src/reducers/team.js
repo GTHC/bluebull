@@ -6,7 +6,7 @@ const initialState = {
   errorMessage: '',
 };
 
-const user = (state=initialState, action) => {
+const team = (state=initialState, action) => {
   const beginState = {
     ...state,
     isLoading: true,
@@ -21,52 +21,59 @@ const user = (state=initialState, action) => {
   };
 
   switch (action.type) {
-    case 'LOGIN': {
+    case 'BEGIN_GET_TEAM': {
+      return beginState;
+    }
+
+    case 'FAILED_GET_TEAM': {
       return {
-        data: action.payload,
-        isLoggedIn: true,
+        ...failedState,
+        errorMessage: action.payload,
       };
     }
 
-    case 'LOGOUT': {
-      return initialState;
-    }
-
-    case 'BEGIN_GET_USER': {
-      return beginState;
-    }
-
-    case 'FAILED_GET_USER': {
-      return {
-        ...failedState,
-        errorMessage: action.payload,
-      }
-    }
-
-    case 'END_GET_USER': {
+    case 'END_GET_TEAM': {
       return {
         ...state,
         isLoggedIn: true,
         data: action.payload.data,
-      }
+      };
     }
 
-    case 'BEGIN_PUT_USER': {
+    case 'BEGIN_PUT_TEAM': {
       return beginState;
     }
 
-    case 'FAILED_PUT_USER': {
+    case 'FAILED_PUT_TEAM': {
       return {
         ...failedState,
         errorMessage: action.payload,
-      }
+      };
     }
 
-    case 'END_PUT_USER': {
+    case 'END_PUT_TEAM': {
       return {
         ...state,
         data: action.payload.data,
-      }
+      };
+    }
+
+    case 'BEGIN_POST_TEAM': {
+      return beginState;
+    }
+
+    case 'FAILED_POST_TEAM': {
+      return {
+        ...failedState,
+        errorMessage: action.payload,
+      };
+    }
+
+    case 'END_POST_TEAM': {
+      return {
+        ...state,
+        data: action.payload.data,
+      };
     }
 
     default: {
@@ -75,4 +82,4 @@ const user = (state=initialState, action) => {
   }
 };
 
-export default user;
+export default team;

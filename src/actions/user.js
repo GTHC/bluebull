@@ -8,7 +8,7 @@ const getUser = (id) => (
       fail: 'FAILED_GET_USER',
     },
     method: 'GET',
-    url: `/user?id=${id}`
+    url: `/user?id=${id}`,
   })
 );
 
@@ -21,11 +21,11 @@ const putUser = (data) =>  (
     },
     method: 'PUT',
     url: `/user`,
-    data
+    data,
   })
 );
 
 export {
   getUser,
   putUser
-}
+};
