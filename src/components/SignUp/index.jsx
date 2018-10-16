@@ -51,6 +51,10 @@ class SignUp extends Component {
     this.renderError = this.renderError.bind(this);
   }
 
+  componentWillMount() {
+    this.props.redux.getTeams();
+  }
+
   changeStep = (inc=true) => {
     const { step, open, errorData } = this.state;
     console.log('inc', inc);
@@ -115,7 +119,7 @@ class SignUp extends Component {
   // render helper functions
   renderStep = () => {
     const { step, type, errorData } = this.state;
-    const { signup } = this.props.redux;
+    const { signup, teams, getTeams } = this.props.redux;
     switch (step) {
       case 1: {
         return <StepOne changeStep={this.changeStep} setType={this.setType} />;
@@ -123,7 +127,12 @@ class SignUp extends Component {
 
       case 2: {
         if (type == 'join') {
-          return <StepTwoJoin updateData={this.updateData} />;
+          return (
+            <StepTwoJoin
+              updateData={this.updateData}
+              teams={teams}
+            />
+          );
         } else if (type == 'create') {
           return (
             <StepTwoCreate

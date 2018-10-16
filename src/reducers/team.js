@@ -1,6 +1,5 @@
 const initialState = {
   data: {},
-  isLoggedIn: false,
   isLoading: false,
   error: false,
   errorMessage: '',
@@ -35,7 +34,7 @@ const team = (state=initialState, action) => {
     case 'END_GET_TEAM': {
       return {
         ...state,
-        isLoggedIn: true,
+        isLoading: false,
         data: action.payload.data,
       };
     }
@@ -54,6 +53,7 @@ const team = (state=initialState, action) => {
     case 'END_PUT_TEAM': {
       return {
         ...state,
+        isLoading: false,
         data: action.payload.data,
       };
     }
@@ -72,6 +72,7 @@ const team = (state=initialState, action) => {
     case 'END_POST_TEAM': {
       return {
         ...state,
+        isLoading: false,
         data: action.payload.data,
       };
     }

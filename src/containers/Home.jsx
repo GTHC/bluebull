@@ -9,8 +9,9 @@ import { bindActionCreators } from 'redux';
 
 // redux actions
 import { login, logout } from '../actions/login';
-import { getTeam, putTeam, postTeam } from '../actions/team';
 import { updateSUDataRedux, resetSUDataRedux } from '../actions/signup';
+import { getTeam, putTeam, postTeam } from '../actions/team';
+import { getTeams } from '../actions/teams';
 
 // material-ui
 import Button from '@material-ui/core/Button';
@@ -26,6 +27,7 @@ class Home extends Component {
       user, logout,
       signup, updateSUDataRedux, resetSUDataRedux,
       team, getTeam, putTeam, postTeam,
+      teams, getTeams,
     } = this.props;
     const signupRedux = {
       signup,
@@ -36,9 +38,14 @@ class Home extends Component {
       team,
       getTeam, putTeam, postTeam,
     };
+    const teamsRedux = {
+      teams,
+      getTeams,
+    };
     const redux = {
       ...signupRedux,
       ...teamRedux,
+      ...teamsRedux,
     };
 
     return (
@@ -62,6 +69,7 @@ const mapStateToProps = (state) => ({
   user: state.user,
   signup: state.signup,
   team: state.team,
+  teams: state.teams,
 });
 
 const mapDispatchToProps = (dispatch) => (
@@ -70,6 +78,7 @@ const mapDispatchToProps = (dispatch) => (
       login, logout,
       updateSUDataRedux, resetSUDataRedux,
       getTeam, putTeam, postTeam,
+      getTeams,
     },
     dispatch)
 );

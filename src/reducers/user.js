@@ -40,15 +40,16 @@ const user = (state=initialState, action) => {
       return {
         ...failedState,
         errorMessage: action.payload,
-      }
+      };
     }
 
     case 'END_GET_USER': {
       return {
         ...state,
         isLoggedIn: true,
+        isLoading: false,
         data: action.payload.data,
-      }
+      };
     }
 
     case 'BEGIN_PUT_USER': {
