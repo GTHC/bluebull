@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 
 // redux actions
 import { login, logout } from '../actions/login';
+import { getTeam, putTeam, postTeam } from '../actions/team';
 import { updateSUDataRedux, resetSUDataRedux } from '../actions/signup';
 
 // material-ui
@@ -21,16 +22,28 @@ import SignUp from '../components/SignUp';
 class Home extends Component {
 
   render() {
-    const { user, logout, signup, updateSUDataRedux, resetSUDataRedux } = this.props;
+    const {
+      user, logout,
+      signup, updateSUDataRedux, resetSUDataRedux,
+      team, getTeam, putTeam, postTeam,
+    } = this.props;
     const signupRedux = {
       signup,
       updateSUDataRedux,
       resetSUDataRedux,
     };
+    const teamRedux = {
+      team,
+      getTeam, putTeam, postTeam,
+    };
+    const redux = {
+      ...signupRedux,
+      ...teamRedux,
+    };
 
     return (
       <div className="App">
-        <SignUp redux={signupRedux} />
+        <SignUp redux={redux} />
         <Nav user={user} />
         Home
         <div>
@@ -48,15 +61,15 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   user: state.user,
   signup: state.signup,
+  team: state.team,
 });
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators(
     {
-      login,
-      logout,
-      updateSUDataRedux,
-      resetSUDataRedux,
+      login, logout,
+      updateSUDataRedux, resetSUDataRedux,
+      getTeam, putTeam, postTeam,
     },
     dispatch)
 );

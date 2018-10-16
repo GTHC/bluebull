@@ -40,4 +40,6 @@ const postTeam = (data) => (
 
 export {
   getTeam,
+  putTeam,
+  postTeam,
 };
