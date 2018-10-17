@@ -119,7 +119,7 @@ class SignUp extends Component {
   // render helper functions
   renderStep = () => {
     const { step, type, errorData } = this.state;
-    const { signup, teams, getTeams } = this.props.redux;
+    const { signup, teams, team, getTeam } = this.props.redux;
     switch (step) {
       case 1: {
         return <StepOne changeStep={this.changeStep} setType={this.setType} />;
@@ -131,6 +131,8 @@ class SignUp extends Component {
             <StepTwoJoin
               updateData={this.updateData}
               teams={teams}
+              team={team}
+              getTeam={getTeam}
             />
           );
         } else if (type == 'create') {

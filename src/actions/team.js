@@ -8,7 +8,7 @@ const getTeam = (captain) => (
       fail: 'FAILED_GET_TEAM',
     },
     method: 'GET',
-    url: `/team?id=${captain}`,
+    url: `/team?captain=${captain}`,
   })
 );
 

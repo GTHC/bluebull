@@ -18,7 +18,7 @@ class StepTwoJoin extends Component {
           <div style={{ textAlign: 'center' }}>Join Team <GroupIcon /></div>
         }</DialogTitle>
         <DialogContent>
-          <AutoComplete teams={this.props.teams} />
+          <AutoComplete {...this.props} />
         </DialogContent>
       </div>
     );

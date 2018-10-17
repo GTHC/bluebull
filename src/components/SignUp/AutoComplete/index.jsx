@@ -12,6 +12,7 @@ const styles = theme => ({
   root: {
     height: 250,
     flexGrow: 1,
+    textAlign: 'center',
   },
   container: {
     position: 'relative',
@@ -42,16 +43,23 @@ class AutoComplete extends Component {
     this.state = {
       single: '',
       suggestions: [],
+      foundTeam: false,
     };
 
+    // Autosuggest functions
     this.renderInputComponent = this.renderInputComponent.bind(this);
     this.renderSuggestion = this.renderSuggestion.bind(this);
+
     this.getSuggestions = this.getSuggestions.bind(this);
 
     this.handleSuggestionsFetchRequested = this.handleSuggestionsFetchRequested.bind(this);
     this.handleSuggestionsClearRequested = this.handleSuggestionsClearRequested.bind(this);
 
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+
+    // non-Autosuggest functions
     this.handleChange = this.handleChange.bind(this);
+    this.handleGetTeam = this.handleGetTeam.bind(this);
   }
 
   renderInputComponent = (inputProps) => {
@@ -60,6 +68,7 @@ class AutoComplete extends Component {
     return (
       <TextField
         fullWidth
+        disabled={this.state.foundTeam}
         InputProps={{
           inputRef: node => {
             ref(node);
@@ -121,6 +130,11 @@ class AutoComplete extends Component {
 
   getSuggestionValue = suggestion => (suggestion.name);
 
+  onSuggestionSelected = (event, { suggestion }) => {
+    this.handleGetTeam(suggestion.captain);
+    this.setState({ foundTeam: true });
+  };
+
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: this.getSuggestions(value),
@@ -139,6 +153,10 @@ class AutoComplete extends Component {
     });
   };
 
+  handleGetTeam = captain => {
+    this.props.getTeam(captain);
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -149,11 +167,13 @@ class AutoComplete extends Component {
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue: this.getSuggestionValue,
       renderSuggestion: this.renderSuggestion,
+      onSuggestionSelected: this.onSuggestionSelected,
     };
 
     return (
       <div className={classes.root}>
         <Autosuggest
+          highlightFirstSuggestion
           {...autosuggestProps}
           inputProps={{
             classes,

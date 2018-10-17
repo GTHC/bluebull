@@ -31,7 +31,7 @@ const team = (state=initialState, action) => {
       };
     }
 
-    case 'END_GET_TEAM': {
+    case 'END_GET_TEAMS': {
       return {
         ...state,
         isLoading: false,
