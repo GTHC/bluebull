@@ -22,6 +22,14 @@ const signup = (state=initialState, action) => {
       return initialState;
     }
 
+    case 'END_GET_TEAM': {
+      return {
+        tentName: action.payload.data.name,
+        tentNumber: action.payload.data.number,
+        tentType: action.payload.data.type,
+      };
+    }
+
     default: {
       return state;
     }

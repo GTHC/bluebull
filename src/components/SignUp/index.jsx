@@ -49,6 +49,8 @@ class SignUp extends Component {
     this.renderStep = this.renderStep.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
     this.renderError = this.renderError.bind(this);
+    this.updateData = this.updateData.bind(this);
+    this.resetData = this.resetData.bind(this);
   }
 
   componentWillMount() {
@@ -81,7 +83,7 @@ class SignUp extends Component {
     this.setState({ type });
   };
 
-  updateData = data => {
+  updateData = (data={}) => {
     const { type } = this.state;
     const { updateSUDataRedux } = this.props.redux;
 
@@ -116,10 +118,18 @@ class SignUp extends Component {
     updateSUDataRedux(data);
   };
 
+  resetData = () => {
+    const { resetSUDataRedux } = this.props.redux;
+    resetSUDataRedux();
+    this.setState({
+      errorData: { error: true },
+    });
+  };
+
   // render helper functions
   renderStep = () => {
     const { step, type, errorData } = this.state;
-    const { signup, teams, team, getTeam } = this.props.redux;
+    const { signup, teams, team, getTeam, resetSUDataRedux } = this.props.redux;
     switch (step) {
       case 1: {
         return <StepOne changeStep={this.changeStep} setType={this.setType} />;
@@ -130,6 +140,7 @@ class SignUp extends Component {
           return (
             <StepTwoJoin
               updateData={this.updateData}
+              resetData={this.resetData}
               teams={teams}
               team={team}
               getTeam={getTeam}

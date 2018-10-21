@@ -77,6 +77,10 @@ const team = (state=initialState, action) => {
       };
     }
 
+    case 'RESET_SU_DATA': {
+      return initialState;
+    }
+
     default: {
       return state;
     }

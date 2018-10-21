@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import deburr from 'lodash/deburr';
+
+// autosuggest
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import TextField from '@material-ui/core/TextField';
+
+// material-ui
+import { withStyles } from '@material-ui/core/styles';
+import Clear from '@material-ui/icons/Clear';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   root: {
@@ -60,6 +67,7 @@ class AutoComplete extends Component {
     // non-Autosuggest functions
     this.handleChange = this.handleChange.bind(this);
     this.handleGetTeam = this.handleGetTeam.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   renderInputComponent = (inputProps) => {
@@ -78,6 +86,16 @@ class AutoComplete extends Component {
           classes: {
             input: classes.input,
           },
+          endAdornment: (
+            <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClear}
+                >
+                  <Clear />
+                </IconButton>
+              </InputAdornment>
+          ),
         }}
         {...other}
       />
@@ -133,6 +151,8 @@ class AutoComplete extends Component {
   onSuggestionSelected = (event, { suggestion }) => {
     this.handleGetTeam(suggestion.captain);
     this.setState({ foundTeam: true });
+    const { data } = this.props.team;
+    this.props.updateData();
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
@@ -155,6 +175,13 @@ class AutoComplete extends Component {
 
   handleGetTeam = captain => {
     this.props.getTeam(captain);
+  };
+
+  handleClear = () => {
+    this.setState({
+      foundTeam: false,
+    });
+    this.props.resetData();
   };
 
   render() {
