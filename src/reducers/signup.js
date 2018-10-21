@@ -2,6 +2,7 @@ const initialState = {
   tentName: '',
   tentType: 'Black',
   tentNumber: 1,
+  passcode: '',
 };
 
 const signup = (state=initialState, action) => {

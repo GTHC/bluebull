@@ -46,10 +46,11 @@ class Passcode extends Component {
     return (
       <div style={{ textAlign: 'center' }}>
         <TextField
-          error={errorData.error}
+          error={team.haveTeam && errorData.error}
           required
           id="passcode"
           label="Passcode"
+          helperText="Add passcode once you choose a team"
           className={classes.textField}
           margin="normal"
           variant="filled"

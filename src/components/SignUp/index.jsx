@@ -164,6 +164,7 @@ class SignUp extends Component {
               data={signup}
               updateData={this.updateData}
               errorData={errorData}
+              team={team}
             />
           );
         }
@@ -176,7 +177,7 @@ class SignUp extends Component {
       }
 
       case 4: {
-        return <Confirm type={type} data={signup} />;
+        return <Confirm type={type} data={signup} team={team} />;
       }
 
       default: {

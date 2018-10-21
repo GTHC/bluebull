@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 class Confirm extends PureComponent {
 
   render() {
-    const { type, data } = this.props;
+    const { type, data, team } = this.props;
     return (
       <div style={{ textAlign: 'center' }}>
         <DialogTitle>
@@ -27,9 +27,13 @@ class Confirm extends PureComponent {
             <Typography variant="h2">
               Please confirm the following to be correct:
             </Typography>
-            {
-              type === 'create' &&
               <div>
+                <br />
+                <strong>Captain: </strong>
+                {
+                  type === 'create' ? 'YOU' :
+                  team.data.captain
+                }
                 <br />
                 <strong>Tent Name: </strong>
                 {data.tentName}
@@ -40,8 +44,10 @@ class Confirm extends PureComponent {
                 <strong>Tent Type: </strong>
                 {data.tentType}
                 <br />
+                <strong>Passcode: </strong>
+                {data.passcode}
+                <br />
               </div>
-            }
           </DialogContentText>
         </DialogContent>
       </div>

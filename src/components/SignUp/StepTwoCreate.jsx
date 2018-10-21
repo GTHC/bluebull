@@ -8,6 +8,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import TextField from '@material-ui/core/TextField';
 
+// components
+import Passcode from './Passcode';
+
+// other packages
+import { generate } from 'randomstring';
+
 // styles from https://material-ui.com/demos/text-fields/
 const styles = theme => ({
   container: {
@@ -30,6 +36,11 @@ class StepTwoCreate extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      passcode: generate(5).toUpperCase(),
+    };
+
     this.handleTentType = this.handleTentType.bind(this);
     this.handleTextField = this.handleTextField.bind(this);
   }
@@ -58,6 +69,7 @@ class StepTwoCreate extends Component {
     const tentTypes = ['Black', 'Dirty Black', 'Blue', 'Dirty Blue', 'White'];
     const { classes, errorData } = this.props;
     const { tentName, tentType, tentNumber } = this.props.data;
+    const { passcode } = this.state;
     return (
       <div>
         <DialogTitle>{
@@ -117,6 +129,16 @@ class StepTwoCreate extends Component {
                 </option>
               ))}
             </TextField>
+            <br />
+            <br />
+            <br />
+            <TextField
+              disabled
+              variant="filled"
+              label="Passcode"
+              helperText="Randomly Generated Passcode"
+              value={passcode}
+            />
           </div>
         </DialogContent>
       </div>

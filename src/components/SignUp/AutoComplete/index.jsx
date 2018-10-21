@@ -16,21 +16,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
-  root: {
-    height: 250,
-    flexGrow: 1,
-    textAlign: 'center',
-  },
-  container: {
-    position: 'relative',
-  },
-  suggestionsContainerOpen: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0,
-  },
   suggestion: {
     display: 'block',
   },
@@ -39,9 +24,25 @@ const styles = theme => ({
     padding: 0,
     listStyleType: 'none',
   },
-  divider: {
-    height: theme.spacing.unit * 2,
-  },
+
+  // root: {
+  //   height: 250,
+  //   flexGrow: 1,
+  //   textAlign: 'center',
+  // },
+  // container: {
+  //   position: 'relative',
+  // },
+  // suggestionsContainerOpen: {
+  //   position: 'absolute',
+  //   zIndex: 1,
+  //   marginTop: theme.spacing.unit,
+  //   left: 0,
+  //   right: 0,
+  // },
+  // divider: {
+  //   height: theme.spacing.unit * 2,
+  // },
 });
 
 class AutoComplete extends Component {
