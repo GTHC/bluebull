@@ -43,6 +43,7 @@ class Home extends Component {
       getTeams,
     };
     const redux = {
+      user,
       ...signupRedux,
       ...teamRedux,
       ...teamsRedux,

@@ -58,8 +58,8 @@ class SignUp extends Component {
   }
 
   changeStep = (inc=true) => {
-    const { step, open, errorData } = this.state;
-    console.log('inc', inc);
+    const { step, open, errorData, type } = this.state;
+    const { postTeam, putTeam, signup, user } = this.props.redux;
     if (errorData.error && step == 2 && inc !== false) { // if error exists, then don't change step
       this.setState({
         showError: true,
@@ -67,8 +67,22 @@ class SignUp extends Component {
     } else {
       const newStep = inc ? step + 1 : step - 1;
 
-      if (newStep == 1) {
+      if (newStep === 1) {
         this.props.redux.resetSUDataRedux();
+      }
+
+      if (newStep === 4) {
+        if (type === 'create') {
+          postTeam({
+            name: signup.tentName,
+            number: signup.tentNumber,
+            type: signup.tentType,
+            passcode: signup.passcode,
+            captain: user.data.email,
+          });
+        } else if (type === 'join') {
+
+        }
       }
 
       this.setState({
