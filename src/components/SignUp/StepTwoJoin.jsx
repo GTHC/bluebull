@@ -8,6 +8,7 @@ import GroupIcon from '@material-ui/icons/Group';
 
 // components
 import AutoComplete from './AutoComplete';
+import Passcode from './Passcode';
 
 class StepTwoJoin extends Component {
 
@@ -19,6 +20,7 @@ class StepTwoJoin extends Component {
         }</DialogTitle>
         <DialogContent>
           <AutoComplete {...this.props} />
+          <Passcode {...this.props} />
         </DialogContent>
       </div>
     );

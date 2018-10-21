@@ -3,6 +3,7 @@ const initialState = {
   isLoading: false,
   error: false,
   errorMessage: '',
+  haveTeam: false,
 };
 
 const team = (state=initialState, action) => {
@@ -28,6 +29,7 @@ const team = (state=initialState, action) => {
       return {
         ...failedState,
         errorMessage: action.payload,
+        haveTeam: false,
       };
     }
 
@@ -36,6 +38,7 @@ const team = (state=initialState, action) => {
         ...state,
         isLoading: false,
         data: action.payload.data,
+        haveTeam: true,
       };
     }
 
@@ -55,6 +58,7 @@ const team = (state=initialState, action) => {
         ...state,
         isLoading: false,
         data: action.payload.data,
+        haveTeam: true,
       };
     }
 
@@ -74,6 +78,7 @@ const team = (state=initialState, action) => {
         ...state,
         isLoading: false,
         data: action.payload.data,
+        haveTeam: true,
       };
     }
 

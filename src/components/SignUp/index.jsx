@@ -85,7 +85,7 @@ class SignUp extends Component {
 
   updateData = (data={}) => {
     const { type } = this.state;
-    const { updateSUDataRedux } = this.props.redux;
+    const { updateSUDataRedux, team } = this.props.redux;
 
     // internal function to check if there are any empty elements in data Obj
     const isDataEmpty = () => {
@@ -98,6 +98,10 @@ class SignUp extends Component {
       return isEmpty;
     };
 
+    const isPasscodeError = () => (
+      !data.passcode || (data.passcode && team.data.passcode !== data.passcode)
+    );
+
     if (type == 'create' && isDataEmpty()) {
       this.setState({
         errorData: {
@@ -107,6 +111,13 @@ class SignUp extends Component {
           tentNumber: data.tentNumber == '',
         },
         data,
+      });
+    } else if (type == 'join' && isPasscodeError()) {
+      this.setState({
+        errorData: {
+          error: true,
+          passcode: true,
+        },
       });
     } else {
       this.setState({
@@ -144,6 +155,7 @@ class SignUp extends Component {
               teams={teams}
               team={team}
               getTeam={getTeam}
+              errorData={errorData}
             />
           );
         } else if (type == 'create') {
