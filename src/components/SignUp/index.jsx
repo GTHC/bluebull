@@ -59,7 +59,7 @@ class SignUp extends Component {
 
   changeStep = (inc=true) => {
     const { step, open, errorData, type } = this.state;
-    const { postTeam, putTeam, signup, user } = this.props.redux;
+    const { postTeam, putTeam, putUser, signup, team, user } = this.props.redux;
     if (errorData.error && step == 2 && inc !== false) { // if error exists, then don't change step
       this.setState({
         showError: true,
@@ -71,18 +71,30 @@ class SignUp extends Component {
         this.props.redux.resetSUDataRedux();
       }
 
-      if (newStep === 4) {
+      if (newStep > 4) {
+        const { email } = user.data;
         if (type === 'create') {
           postTeam({
             name: signup.tentName,
             number: signup.tentNumber,
             type: signup.tentType,
             passcode: signup.passcode,
-            captain: user.data.email,
+            captain: email,
+            users: [email],
           });
         } else if (type === 'join') {
-
+          const { captain, users } = team.data;
+          users.push(email);
+          putTeam({
+            captain,
+            users,
+          });
         }
+
+        putUser({
+          id: email,
+          team,
+        });
       }
 
       this.setState({
@@ -113,7 +125,8 @@ class SignUp extends Component {
     };
 
     const isPasscodeError = () => (
-      !data.passcode || (data.passcode && team.data.passcode !== data.passcode)
+      !data.passcode ||
+      (data.passcode && team.data.passcode.toUpperCase() !== data.passcode.toUpperCase())
     );
 
     if (type == 'create' && isDataEmpty()) {
