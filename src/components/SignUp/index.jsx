@@ -59,7 +59,7 @@ class SignUp extends Component {
 
   changeStep = (inc=true) => {
     const { step, open, errorData, type } = this.state;
-    const { postTeam, putTeam, putUser, signup, team, user } = this.props.redux;
+    const { postTeam, putTeam, getUser, putUser, signup, team, user } = this.props.redux;
     if (errorData.error && step == 2 && inc !== false) { // if error exists, then don't change step
       this.setState({
         showError: true,
@@ -93,8 +93,9 @@ class SignUp extends Component {
 
         putUser({
           id: email,
-          team,
+          team: signup,
         });
+        getUser(email);
       }
 
       this.setState({

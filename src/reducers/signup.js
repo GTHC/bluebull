@@ -25,6 +25,7 @@ const signup = (state=initialState, action) => {
 
     case 'END_GET_TEAM': {
       return {
+        ...state,
         tentName: action.payload.data.name,
         tentNumber: action.payload.data.number,
         tentType: action.payload.data.type,

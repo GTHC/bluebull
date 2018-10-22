@@ -45,7 +45,7 @@ class Home extends Component {
       getTeams,
     };
     const userRedux = {
-      user, putUser, putUser,
+      user, getUser, putUser,
     };
     const redux = {
       ...userRedux,
@@ -56,7 +56,10 @@ class Home extends Component {
 
     return (
       <div className="App">
-        <SignUp redux={redux} />
+        {
+          !user.data.team &&
+          <SignUp redux={redux} />
+        }
         <Nav user={user} />
         Home
         <div>
