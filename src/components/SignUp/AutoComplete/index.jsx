@@ -45,6 +45,11 @@ const styles = theme => ({
   // },
 });
 
+/*
+Component is based of examples from:
+https://github.com/moroshko/react-autosuggest
+https://material-ui.com/demos/autocomplete/#autocomplete
+ */
 class AutoComplete extends Component {
   constructor(props) {
     super(props);

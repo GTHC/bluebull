@@ -25,35 +25,36 @@ const styles = theme => ({
   },
 });
 
-
 class StepOne extends Component {
   constructor(props) {
     super(props);
-    this.joinTeam = this.joinTeam.bind(this)
-    this.createTeam = this.createTeam.bind(this)
+    this.joinTeam = this.joinTeam.bind(this);
+    this.createTeam = this.createTeam.bind(this);
   }
 
   joinTeam = () => {
     this.props.setType('join');
     this.props.changeStep();
-  }
+  };
 
   createTeam = () => {
     this.props.setType('create');
     this.props.changeStep();
-  }
+  };
 
   render() {
     const { classes } = this.props;
     return (
-      <div style={{ textAlign: 'center'}}>
+      <div style={{ textAlign: 'center' }}>
         <DialogTitle>{
-          <div style={{ textAlign: 'center'}}>Seems like you don't have a team!</div>
+          <div style={{ textAlign: 'center' }}>Seems like you don't have a team!</div>
         }</DialogTitle>
         <DialogContent>
           <DialogContentText >
             {
-              <div style={{ textAlign: 'center'}}>Before you continue, choose one of the following: </div>
+              <div style={{ textAlign: 'center' }}>
+                Before you continue, choose one of the following:
+              </div>
             }
           </DialogContentText>
           <br />

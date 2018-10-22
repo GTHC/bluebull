@@ -57,6 +57,10 @@ class SignUp extends Component {
     this.props.redux.getTeams();
   }
 
+  /**
+   * changeStep - this will update the Stepper's position using the step field in the state
+   * @param  {Boolean} [inc=true] [step is incrementing (+1) or decrementing (-1); default is true/incrementing]
+   */
   changeStep = (inc=true) => {
     const { step, open, errorData, type } = this.state;
     const { postTeam, putTeam, getUser, putUser, signup, team, user } = this.props.redux;
@@ -106,10 +110,15 @@ class SignUp extends Component {
     }
   };
 
+  // setting up the type of signup: create (Create Team) & join (Join Team)
   setType = (type) => {
     this.setState({ type });
   };
 
+  /**
+   * updateData - function that is passed down to the Step Two Components to update the signup team data
+   * @param  {Object} [data={}] [object that holds the signup team data, whether it is create or join type]
+   */
   updateData = (data={}) => {
     const { type } = this.state;
     const { updateSUDataRedux, team } = this.props.redux;
@@ -130,6 +139,7 @@ class SignUp extends Component {
       (data.passcode && team.data.passcode.toUpperCase() !== data.passcode.toUpperCase())
     );
 
+    // error checking whenever data is updated
     if (type == 'create' && isDataEmpty()) {
       this.setState({
         errorData: {
@@ -157,6 +167,9 @@ class SignUp extends Component {
     updateSUDataRedux(data);
   };
 
+  /**
+   * resetData - function for the AutoComplete Component in StepTwoJoin to clear data when clear button is pressed
+   */
   resetData = () => {
     const { resetSUDataRedux } = this.props.redux;
     resetSUDataRedux();
@@ -165,7 +178,9 @@ class SignUp extends Component {
     });
   };
 
-  // render helper functions
+  /*
+  render helper functions
+   */
   renderStep = () => {
     const { step, type, errorData } = this.state;
     const { signup, teams, team, getTeam, resetSUDataRedux } = this.props.redux;
