@@ -11,7 +11,6 @@ const crud = request => (dispatch) => {
       data: request.data ? request.data : null,
     })
     .then((res) => {
-      console.log('res', res)
       dispatch({
             type: request.dispatch.end,
             payload: res.data,
@@ -22,7 +21,6 @@ const crud = request => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.log('err', err)
       dispatch({
         type: request.dispatch.fail,
         payload: err,

@@ -9,19 +9,57 @@ import { bindActionCreators } from 'redux';
 
 // redux actions
 import { login, logout } from '../actions/login';
+import { updateSUDataRedux, resetSUDataRedux } from '../actions/signup';
+import { getTeam, putTeam, postTeam } from '../actions/team';
+import { getUser, putUser } from '../actions/user';
+import { getTeams } from '../actions/teams';
 
 // material-ui
 import Button from '@material-ui/core/Button';
 
 // components
 import Nav from './Nav';
+import SignUp from '../components/SignUp';
 
 class Home extends Component {
 
   render() {
-    const { user, logout } = this.props;
+    const {
+      user, getUser, putUser,
+      logout,
+      signup, updateSUDataRedux, resetSUDataRedux,
+      team, getTeam, putTeam, postTeam,
+      teams, getTeams,
+    } = this.props;
+    const signupRedux = {
+      signup,
+      updateSUDataRedux,
+      resetSUDataRedux,
+    };
+    const teamRedux = {
+      team,
+      getTeam, putTeam, postTeam,
+    };
+    const teamsRedux = {
+      teams,
+      getTeams,
+    };
+    const userRedux = {
+      user, getUser, putUser,
+    };
+    const redux = {
+      ...userRedux,
+      ...signupRedux,
+      ...teamRedux,
+      ...teamsRedux,
+    };
+
     return (
       <div className="App">
+        {
+          !user.data.team &&
+          <SignUp redux={redux} />
+        }
         <Nav user={user} />
         Home
         <div>
@@ -38,13 +76,19 @@ class Home extends Component {
 // connecting to redux
 const mapStateToProps = (state) => ({
   user: state.user,
+  signup: state.signup,
+  team: state.team,
+  teams: state.teams,
 });
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators(
     {
-      login,
-      logout,
+      login, logout,
+      updateSUDataRedux, resetSUDataRedux,
+      getTeams,
+      getUser, putUser,
+      getTeam, putTeam, postTeam,
     },
     dispatch)
 );
