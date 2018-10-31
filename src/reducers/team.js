@@ -1,12 +1,12 @@
 const initialState = {
   data: {},
-  isLoggedIn: false,
   isLoading: false,
   error: false,
   errorMessage: '',
+  haveTeam: false,
 };
 
-const user = (state=initialState, action) => {
+const team = (state=initialState, action) => {
   const beginState = {
     ...state,
     isLoading: true,
@@ -21,53 +21,69 @@ const user = (state=initialState, action) => {
   };
 
   switch (action.type) {
-    case 'LOGIN': {
-      return {
-        data: action.payload,
-        isLoggedIn: true,
-      };
-    }
-
-    case 'LOGOUT': {
-      return initialState;
-    }
-
-    case 'BEGIN_GET_USER': {
+    case 'BEGIN_GET_TEAM': {
       return beginState;
     }
 
-    case 'FAILED_GET_USER': {
+    case 'FAILED_GET_TEAM': {
       return {
         ...failedState,
         errorMessage: action.payload,
+        haveTeam: false,
       };
     }
 
-    case 'END_GET_USER': {
+    case 'END_GET_TEAM': {
       return {
         ...state,
-        isLoggedIn: true,
         isLoading: false,
         data: action.payload.data,
+        haveTeam: true,
       };
     }
 
-    case 'BEGIN_PUT_USER': {
+    case 'BEGIN_PUT_TEAM': {
       return beginState;
     }
 
-    case 'FAILED_PUT_USER': {
+    case 'FAILED_PUT_TEAM': {
       return {
         ...failedState,
         errorMessage: action.payload,
-      }
+      };
     }
 
-    case 'END_PUT_USER': {
+    case 'END_PUT_TEAM': {
       return {
         ...state,
+        isLoading: false,
         data: action.payload.data,
-      }
+        haveTeam: true,
+      };
+    }
+
+    case 'BEGIN_POST_TEAM': {
+      return beginState;
+    }
+
+    case 'FAILED_POST_TEAM': {
+      return {
+        ...failedState,
+        errorMessage: action.payload,
+      };
+    }
+
+    case 'END_POST_TEAM': {
+      return {
+        ...state,
+        isLoading: false,
+        data: action.payload.data,
+        haveTeam: true,
+      };
+    }
+
+    case 'RESET_SU_DATA': {
+      return initialState;
     }
 
     default: {
@@ -76,4 +92,4 @@ const user = (state=initialState, action) => {
   }
 };
 
-export default user;
+export default team;

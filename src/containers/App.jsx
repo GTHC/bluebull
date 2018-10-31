@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 
 // redux actions
 import { login, logout } from '../actions/login';
+import { getUser } from '../actions/user';
 
 // routing
 import { Route, Redirect } from 'react-router-dom';
@@ -41,10 +42,11 @@ class App extends Component {
   }
 
   authListner = () => {
-    const { login, logut, user } = this.props;
+    const { login, logut, getUser, user } = this.props;
     firebase.auth().onAuthStateChanged(userData => {
       if (userData) {
-        login(userData);
+        // login(userData);
+        getUser(userData.email);
       } else {
         logout();
       }
@@ -89,6 +91,7 @@ const mapDispatchToProps = (dispatch) => (
     {
       login,
       logout,
+      getUser,
     },
     dispatch)
 );
