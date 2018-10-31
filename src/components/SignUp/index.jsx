@@ -36,7 +36,7 @@ class SignUp extends Component {
     const { signup } = this.props.redux;
     this.state = {
       open: true,
-      step: 1,
+      step: 3,
       type: 'join',
       errorData: {
         error: true,

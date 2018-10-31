@@ -57,7 +57,7 @@ class Home extends Component {
     return (
       <div className="App">
         {
-          !user.data.team &&
+          // !user.data.team &&
           <SignUp redux={redux} />
         }
         <Nav user={user} />

@@ -6,6 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+// components
+import Availability from './Availability';
 
 class StepThree extends Component {
 
@@ -22,6 +24,9 @@ class StepThree extends Component {
         <DialogContentText>{
           <div style={style}>Enter your general weekly availability below (you can always change this in your settings):</div>
         }</DialogContentText>
+        <DialogContent>
+          <Availability />
+        </DialogContent>
       </div>
     );
   }
