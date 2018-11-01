@@ -5,6 +5,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -102,10 +104,14 @@ class FAQ extends Component {
           <Typography>Go Duke!</Typography>
         </ExpansionPanelSummary>
       </ExpansionPanel>
-    </div>
-    </div>
         <img src="https://cdn-s3.si.com/s3fs-public/styles/marquee_large_2x/public/2018/08/19/zion_and_barrett_in_duke_uniforms.jpg?itok=4VhNwH9q"/>
     </div>
     );
   }
+}
+
+export default FAQ
+
+export {
+  FAQ
 }

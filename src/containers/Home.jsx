@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 // firebase
 import firebase from './../firebase';
 // redux
@@ -13,16 +15,16 @@ import Nav from './Nav';
 // Stepper
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Stepper from './Stepper.';
+//import Stepper from './Stepper';
 
 // Tabs
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 //Expansion
-import ExpansionPanel from './FAQ';
+import FAQ from './FAQ';
 // Cards
-import Card from './Policy';
+import Policy from './Policy';
 //Icon
 import Icon from '@material-ui/core/Icon';
 
@@ -48,34 +50,34 @@ const styles = theme => ({
   },
 });
 
-// function TabContainer(props) {
-//   return (
-//     <Typography component="div" style={{ padding: 8 * 3 }}>
-//       {props.children}
-//     </Typography>
-//   );
-// }
-//
-// TabContainer.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
-//
-// function getSteps() {
-//   return ['K-Ville 101', 'Step 2', 'Step 3'];
-// }
-//
-// function getStepContent(step) {
-//   switch (step) {
-//     case 0:
-//       return `This is the beginning of a step-by-step process on how to go about all things K-Ville!`;
-//     case 1:
-//       return 'Establish the Captain of your team. Submit your Tenting Roster to the Line Monitors. Create and join the team on our app.';
-//     case 2:
-//       return `Get a Tent! Make sure you check the specification of the tent for your team and utilize our tools to help you.`;
-//     default:
-//       return 'Unknown step';
-//   }
-// }
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+};
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+function getSteps() {
+  return ['K-Ville 101', 'Step 2', 'Step 3'];
+};
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return `This is the beginning of a step-by-step process on how to go about all things K-Ville!`;
+    case 1:
+      return 'Establish the Captain of your team. Submit your Tenting Roster to the Line Monitors. Create and join the team on our app.';
+    case 2:
+      return `Get a Tent! Make sure you check the specification of the tent for your team and utilize our tools to help you.`;
+    default:
+      return 'Unknown step';
+  }
+};
 
 class Home extends Component {
 
@@ -85,7 +87,6 @@ class Home extends Component {
       activeStep: 0,
       value: 0,
     }
-
     this.handleReset = this.handleReset.bind(this);
   }
 
@@ -129,10 +130,9 @@ class Home extends Component {
               </Tabs>
             </Paper>
           </div>
-          <div>
+
           {value === 0 &&
             <TabContainer>
-              // <Stepper />
                 <Paper square elevation={0}>
                   <Typography>All steps completed - You are finished! </Typography>
                   <Button onClick={this.handleReset}> Reset </Button>
@@ -142,15 +142,17 @@ class Home extends Component {
           }
           {value === 1 &&
             <TabContainer> Value 1
+              <Policy />
             </TabContainer>
           }
           {value === 2 &&
             <TabContainer> <h2> Frequently Asked Questions </h2>
-              <div> Yeah </div>
+              <FAQ />
             </TabContainer>
           }
-        </div>
-    );
+      </div>
+
+        );
   }
 }
 
@@ -172,4 +174,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 export {
   Home,
-};
+}
