@@ -21,7 +21,7 @@ class AvatarMenu extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.signOut = this.signOut.bind(this);
   }
-  
+
   handleAvatar = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -29,12 +29,12 @@ class AvatarMenu extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  
+
   signOut = () => {
     // firebase.auth().signOut();
     this.props.logout();
   }
-  
+
   render() {
     const { src } = this.props;
     const { anchorEl } = this.state;
@@ -73,3 +73,7 @@ class AvatarMenu extends Component {
 }
 
 export default withStyles()(AvatarMenu);
+
+export {
+  AvatarMenu
+};

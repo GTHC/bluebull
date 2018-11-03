@@ -64,3 +64,7 @@ class Passcode extends Component {
 }
 
 export default withStyles(styles)(Passcode);
+
+export {
+  Passcode,
+};
