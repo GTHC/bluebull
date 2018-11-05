@@ -55,14 +55,17 @@ class StepTwoCreate extends Component {
     if (e.target.id == 'tentNumber' && value < 1) {
       value = 1;
     }
-
-    this.setState({
+    this.props.updateData({
+      passcode: this.state.passcode,
       [e.target.id]: value,
-    }, () => {
-      this.props.updateData({
-        ...this.state,
-      });
-    });
+    })
+    // this.setState({
+    //   [e.target.id]: value,
+    // }, () => {
+    //   this.props.updateData({
+    //     ...this.state,
+    //   });
+    // });
   };
 
   render() {

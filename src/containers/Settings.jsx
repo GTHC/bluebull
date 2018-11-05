@@ -16,12 +16,11 @@ import { getTeams } from '../actions/teams';
 
 // material-ui
 import Button from '@material-ui/core/Button';
-
+import TextField from '@material-ui/core/TextField';
 // components
 import Nav from './Nav';
-import SignUp from '../components/SignUp';
 
-class Home extends Component {
+class Settings extends Component {
 
   render() {
     const {
@@ -56,21 +55,32 @@ class Home extends Component {
 
     return (
       <div className="App">
-        {
-          !user.data.team &&
-          <SignUp redux={redux} />
-        }
         <Nav user={user} />
         <div>
           <h1>
-            Welcome {user.data.displayName}
+            Settings {user.data.displayName}
           </h1>
+          <TextField
+         id="standard-required"
+         label="Name"
+         value={user.data.displayName}
+         margin="normal"
+       />
+       <br />
+         <TextField
+        id="standard-"
+        label="Name"
+        value={user.data.displayName}
+        margin="normal"
+      />
+
         </div>
       </div>
     );
   }
 
 }
+
 
 // connecting to redux
 const mapStateToProps = (state) => ({
@@ -92,8 +102,8 @@ const mapDispatchToProps = (dispatch) => (
     dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
 
 export {
-  Home,
+  Settings,
 };
