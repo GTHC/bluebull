@@ -8,12 +8,8 @@
     "@material-ui/icons": "^3.0.1",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.18.0",
-<<<<<<< HEAD
-    "firebase": "^5.5.4",
-=======
-    "enzyme-to-json": "^3.3.4",
     "firebase": "^5.5.0",
->>>>>>> d065b421dbe32255bd33bf6a4804284a4fe50f6b
+    "enzyme-to-json": "^3.3.4",
     "history": "^4.7.2",
     "jest-dom": "^2.1.0",
     "lodash": "^4.17.11",
