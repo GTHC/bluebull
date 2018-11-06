@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // firebase
-import firebase from './../firebase';
+// import firebase from './../firebase';
 
 // redux
 import { connect } from 'react-redux';

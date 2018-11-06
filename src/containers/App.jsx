@@ -14,7 +14,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import ConnectedSwitch from '../utils/ConnectedSwitch';
 
 // firebase
-import firebase from './../firebase';
+// import firebase from './../firebase';
 
 // containers
 import Login from './Login';
@@ -43,14 +43,14 @@ class App extends Component {
 
   authListner = () => {
     const { login, logut, getUser, user } = this.props;
-    firebase.auth().onAuthStateChanged(userData => {
-      if (userData) {
+//    firebase.auth().onAuthStateChanged(userData => {
+//      if (userData) {
         // login(userData);
-        getUser(userData.email);
-      } else {
-        logout();
-      }
-    });
+  //      getUser(userData.email);
+    //  } else {
+      //  logout();
+    //  }
+  //  });
   };
 
   render() {
