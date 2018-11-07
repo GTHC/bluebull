@@ -30,8 +30,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const drawerWidth = 240;
 
@@ -148,14 +147,45 @@ class Nav extends Component {
           </div>
           <Divider />
           <List>
-            {['Home', 'Dashboard', 'Calendar', 'Tenting 101', 'FAQ', 'Settings'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <ChevronLeftIcon /> : <ChevronRightIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <ListItem button>
+            <ListItemIcon>
+              <SvgIcon>
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+              </SvgIcon>
+            </ListItemIcon>
+            <ListItemText inset primary="Home" />
+            </ListItem>
+            <ListItem button>
+            <ListItemIcon>
+              <ChevronRightIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Dashboard" />
+            </ListItem>
+            <ListItem button>
+            <ListItemIcon>
+              <ChevronRightIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Calendar" />
+            </ListItem>
+            <ListItem button>
+            <ListItemIcon>
+              <ChevronRightIcon />
+            </ListItemIcon>
+            <ListItemText inset primary="Tenting 101" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+              <ChevronRightIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="FAQ" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+              <ChevronRightIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Settings" />
+            </ListItem>
           </List>
-          <Divider />
         </Drawer>
       </div>
     );
