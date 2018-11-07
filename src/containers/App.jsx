@@ -20,11 +20,13 @@ import firebase from './../firebase';
 import Login from './Login';
 import Home from './Home';
 import Nav from './Nav';
+import Settings from './Settings';
 
 // routes
 const AppRoutes = () => (
   <ConnectedSwitch>
     <Route exact path="/app" component={Home} />
+    <Route exact path="/app/settings" component={Settings} />
   </ConnectedSwitch>
 );
 
@@ -40,7 +42,7 @@ class App extends Component {
   componentDidMount() {
     this.authListner();
   }
-
+  //this countinously checks if the user is logged in or not on the platform
   authListner = () => {
     const { login, logut, getUser, user } = this.props;
     firebase.auth().onAuthStateChanged(userData => {
