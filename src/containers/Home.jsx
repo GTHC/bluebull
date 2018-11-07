@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 // components
 import Nav from './Nav';
 import SignUp from '../components/SignUp';
+import Grids from './Grid';
 
 class Home extends Component {
 
@@ -56,6 +57,7 @@ class Home extends Component {
 
     return (
       <div className="App">
+        _
         {
           !user.data.team &&
           <SignUp redux={redux} />
@@ -67,6 +69,7 @@ class Home extends Component {
             Welcome {user.data.displayName}
           </h1>
         </div>
+        <Grids />
       </div>
     );
   }
