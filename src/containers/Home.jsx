@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 // components
 import Nav from './Nav';
 import SignUp from '../components/SignUp';
-import Grids from './Grid';
+import Grids from './GridV2';
 
 class Home extends Component {
 

@@ -7,6 +7,7 @@ const times = [
   '00:00 ~ 01:00',
   '01:00 ~ 02:00',
   '02:00 ~ 03:00',
+  '03:00 ~ 04:00',
   '04:00 ~ 05:00',
   '05:00 ~ 06:00',
   '06:00 ~ 07:00',
@@ -58,7 +59,7 @@ class Grids extends Component {
           </Grid.Column>
       </Grid>
       <Grid columns='equal'>
-          <Grid columns={7} padded>
+          <Grid columns={7} celled>
           {days.map(day => (
             <Grid.Column key={day} color='green'>
               <Grid.Row>{_.capitalize(day)}</Grid.Row>
