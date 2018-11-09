@@ -22,10 +22,6 @@ const times = [
   '00:30 ~ 02:00', // 1 hour 30 min shift till night shift, accounts for switching
 ]
 
-const ind = [
-  0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-]
-
 const days = [
   'Times',
   'Monday',
@@ -57,9 +53,7 @@ class Grids extends Component {
 
   render() {
     const { myFunction } = this.props;
-    const free = 'green';
-    const busy = 'red';
-    const M = 'Monday'
+
     return (
       <div>
         <Grid columns='equal'>
