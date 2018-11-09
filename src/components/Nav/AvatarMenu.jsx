@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // firebase
-import firebase from './../../firebase';
+ import firebase from './../../firebase';
 
 // material-ui
 import { withStyles } from '@material-ui/core/styles';

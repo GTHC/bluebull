@@ -43,7 +43,7 @@ class App extends Component {
 
   authListner = () => {
     const { login, logut, getUser, user } = this.props;
-    firebase.auth().onAuthStateChanged(userData => {
+   firebase.auth().onAuthStateChanged(userData => {
       if (userData) {
         // login(userData);
         getUser(userData.email);

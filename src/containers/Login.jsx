@@ -34,7 +34,7 @@ class Login extends Component {
     this.uiConfig = {
         signInFlow: 'popup',
         signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    //      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
           signInSuccess: () => false,
@@ -60,7 +60,7 @@ class Login extends Component {
             </DialogContentText>
             <StyledFirebaseAuth
               uiConfig={this.uiConfig}
-              firebaseAuth={firebase.auth()}
+               firebaseAuth={firebase.auth()}
             />
           </DialogContent>
         </Dialog>
