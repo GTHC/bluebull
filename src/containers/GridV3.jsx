@@ -22,6 +22,10 @@ const times = [
   '00:30 ~ 02:00', // 1 hour 30 min shift till night shift, accounts for switching
 ]
 
+const ind = [
+  0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+]
+
 const days = [
   'Times',
   'Monday',
@@ -38,14 +42,17 @@ class Grids extends Component {
     super(props);
     this.state = {
       user: null,
-      isToggleOn: true,
+      isToggleOn: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+      Gridv: (new Array(16)).fill().map(function(){ return new Array(7).fill(false);}),
     };
+
     this.handleClick = this.handleClick.bind(this);
   }
-  handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
+
+
+  handleClick(row,column) {
+    this.state.Gridv[row][column]=!this.state.Gridv[row][column];
+    this.forceUpdate();
   }
 
   render() {
@@ -53,7 +60,6 @@ class Grids extends Component {
     const free = 'green';
     const busy = 'red';
     const M = 'Monday'
-
     return (
       <div>
         <Grid columns='equal'>
@@ -72,13 +78,29 @@ class Grids extends Component {
             {times.map(time => (
               <Grid.Row key={time} style={{height: '6.5%'}}>
                 <Grid.Column> {_.capitalize(time)} </Grid.Column>
-                <Grid.Column key={0}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
-                <Grid.Column key={1}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
-                <Grid.Column key={2}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
-                <Grid.Column key={3}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
-                <Grid.Column key={4}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
-                <Grid.Column key={5}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
-                <Grid.Column key={6}><Icon color='green' name='checkmark' size='large' /></Grid.Column>
+                <Grid.Column key={0} onClick={() => {
+                  this.handleClick(times.indexOf(time), 0);
+                }}>
+                {!this.state.Gridv[times.indexOf(time)][0] && <Icon color='green' name='checkmark' size='large' />} </Grid.Column>
+                <Grid.Column key={1} onClick={() => {
+                  this.handleClick(times.indexOf(time), 1);
+                }}>  {!this.state.Gridv[times.indexOf(time)][1] &&<Icon color='green' name='checkmark' size='large' />}</Grid.Column>
+
+                <Grid.Column key={2} onClick={() => {
+                  this.handleClick(times.indexOf(time), 2);
+                }}>  {!this.state.Gridv[times.indexOf(time)][2] &&<Icon color='green' name='checkmark' size='large' />}</Grid.Column>
+                <Grid.Column key={3} onClick={() => {
+                  this.handleClick(times.indexOf(time), 3);
+                }}>  {!this.state.Gridv[times.indexOf(time)][3] &&<Icon color='green' name='checkmark' size='large' />}</Grid.Column>
+                <Grid.Column key={4} onClick={() => {
+                  this.handleClick(times.indexOf(time), 4);
+                }}>  {!this.state.Gridv[times.indexOf(time)][4] &&<Icon color='green' name='checkmark' size='large' />}</Grid.Column>
+                <Grid.Column key={5} onClick={() => {
+                  this.handleClick(times.indexOf(time), 5);
+                }}>  {!this.state.Gridv[times.indexOf(time)][5] && <Icon color='green' name='checkmark' size='large' />}</Grid.Column>
+                <Grid.Column key={6} onClick={() => {
+                  this.handleClick(times.indexOf(time), 6);
+                }}> {!this.state.Gridv[times.indexOf(time)][6] &&<Icon color='green' name='checkmark' size='large' />}</Grid.Column>
               </Grid.Row>
             ))}
         </Grid>
