@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 // components
 import Nav from './Nav';
 import SignUp from '../components/SignUp';
+import AccordionExampleNested from './FAQ';
 
 class Home extends Component {
 
@@ -61,11 +62,13 @@ class Home extends Component {
           <SignUp redux={redux} />
         }
         <Nav user={user} />
+        _
         <div>
           <h1>
             Welcome {user.data.displayName}
           </h1>
         </div>
+        <AccordionExampleNested/>
       </div>
     );
   }
