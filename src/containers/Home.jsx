@@ -61,6 +61,7 @@ class Home extends Component {
           !user.data.team &&
           <SignUp redux={redux} />
         }
+        _
         <Nav user={user} />
         _
         <div>
