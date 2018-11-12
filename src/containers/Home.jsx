@@ -21,6 +21,7 @@ import Button from '@material-ui/core/Button';
 import Nav from './Nav';
 import SignUp from '../components/SignUp';
 import AccordionExampleNested from './FAQ';
+import StepExampleAttached from './stepper';
 
 class Home extends Component {
 
@@ -70,6 +71,7 @@ class Home extends Component {
           </h1>
         </div>
         <AccordionExampleNested/>
+        <StepExampleAttached/>
       </div>
     );
   }
