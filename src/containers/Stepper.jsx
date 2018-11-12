@@ -154,7 +154,7 @@ class Stepper extends Component {
   }
 };
 
-export default Stepper
+export default Stepper;
 
 export {
   Stepper

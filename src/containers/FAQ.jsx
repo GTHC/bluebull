@@ -110,7 +110,7 @@ class FAQ extends Component {
   }
 }
 
-export default FAQ
+export default FAQ;
 
 export {
   FAQ

@@ -12,11 +12,11 @@ import { login, logout } from '../actions/login';
 import Button from '@material-ui/core/Button';
 // components
 import Nav from './Nav';
-import Sidebar from './Nav/Sidebar';
+// import Sidebar from './Nav/Sidebar';
 // Stepper
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-//import Stepper from './Stepper';
+// import Stepper from './Stepper';
 
 // Tabs
 import AppBar from '@material-ui/core/AppBar';
