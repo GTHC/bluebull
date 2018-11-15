@@ -22,6 +22,8 @@ import Nav from './Nav';
 import SignUp from '../components/SignUp';
 import AccordionExampleNested from './FAQ';
 import StepExampleAttached from './stepper';
+import TentingDates2018 from './TentingDates';
+import PolicyCard from './Policy';
 
 class Home extends Component {
 
@@ -70,8 +72,10 @@ class Home extends Component {
             Welcome {user.data.displayName}
           </h1>
         </div>
+        <PolicyCard />
         <AccordionExampleNested/>
         <StepExampleAttached/>
+        <TentingDates2018/>
       </div>
     );
   }
