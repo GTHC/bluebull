@@ -72,9 +72,9 @@ class Home extends Component {
             Welcome {user.data.displayName}
           </h1>
         </div>
-        <PolicyCard />
+        // <PolicyCard />
         <AccordionExampleNested/>
-        <StepExampleAttached/>
+        // <StepExampleAttached/>
         <TentingDates2018/>
       </div>
     );
