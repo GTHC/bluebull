@@ -20,10 +20,11 @@ import Button from '@material-ui/core/Button';
 // components
 import Nav from './Nav';
 import SignUp from '../components/SignUp';
-import AccordionExampleNested from './FAQ';
-import StepExampleAttached from './stepper';
+import FAQ from './FAQ';
+import Step from './stepper';
 import TentingDates2018 from './TentingDates';
 import PolicyCard from './Policy';
+import AboutPage from './About';
 
 class Home extends Component {
 
@@ -72,9 +73,7 @@ class Home extends Component {
             Welcome {user.data.displayName}
           </h1>
         </div>
-        // <PolicyCard />
-        <AccordionExampleNested/>
-        // <StepExampleAttached/>
+        <Step/>
         <TentingDates2018/>
       </div>
     );
