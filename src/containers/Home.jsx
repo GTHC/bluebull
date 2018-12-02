@@ -22,7 +22,6 @@ import Nav from './Nav';
 import SignUp from '../components/SignUp';
 import FAQ from './FAQ';
 import Step from './stepper';
-import TentingDates2018 from './TentingDates';
 import PolicyCard from './Policy';
 import AboutPage from './About';
 
@@ -73,8 +72,7 @@ class Home extends Component {
             Welcome {user.data.displayName}
           </h1>
         </div>
-        <Step/>
-        <TentingDates2018/>
+        <AboutPage/>
       </div>
     );
   }
