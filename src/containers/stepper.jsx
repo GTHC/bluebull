@@ -3,17 +3,19 @@ import React, { Component } from 'react';
 // semantic ui components
 import { Button, Form, Step, Divider, Message, Header, Segment, Card, Grid, Table, Icon } from 'semantic-ui-react';
 
-// sub-components
-import Menu from './Menu';
-import TentingDates2018 from './TentingDates';
-
 class Stepper extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeStep: 0,
-    }
+    };
+    this.handleReset = this.handleReset.bind(this);
   }
+  handleReset = () => {
+    this.setState({
+      activeStep: 0,
+    });
+  };
   handleButtonClick = (e, data) => {
       const { activeStep } = this.state;
       switch (data.id) {
@@ -30,12 +32,6 @@ class Stepper extends Component {
           }
           return;
         }
-        case 'reset' : {
-          if (activeStep === 2) {
-            this.setState({ activeStep: 0});
-          }
-          return;
-        }
       }
     }
 
@@ -43,7 +39,7 @@ class Stepper extends Component {
     const steps = [
         { key: 'step1', active: true, icon: 'list alternate', title: 'Step 1', description: 'Find your team', active: (activeStep === 0) },
         { key: 'step2', icon: 'users', title: 'Step 2', description: 'Register with the Line Monitors!', active: (activeStep === 1) },
-        { key: 'step3', icon: 'bed', title: 'Step 3', active: (activeStep === 2), completed: (activeStep === 0) },
+        { key: 'step3', icon: 'bed', title: 'Step 3', description: 'Get your tenting essentials!', active: (activeStep === 2), completed: (activeStep === 0) },
       ];
     const { activeStep } = this.state;
     const { value } = this.state;
@@ -142,7 +138,7 @@ class Stepper extends Component {
           <Button.Group fluid>
             <Button id="back" content='Back' icon='left arrow' labelPosition='left' color="red" onClick={this.handleButtonClick} />
             <Button.Or />
-            <Button id="signup" content='Reset' icon='sign in' labelPosition='right' color="green" onClick={this.handleButtonClick} />
+            <Button id="signup" content='Reset' icon='sign in' labelPosition='right' color="green" onClick={this.handleReset} />
           </Button.Group>
         }
         <br />
