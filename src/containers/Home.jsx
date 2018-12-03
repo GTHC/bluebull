@@ -72,7 +72,7 @@ class Home extends Component {
             Welcome {user.data.displayName}
           </h1>
         </div>
-        <AboutPage/>
+        <Step/>
       </div>
     );
   }

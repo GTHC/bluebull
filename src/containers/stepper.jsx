@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // semantic ui components
-import { Button, Form, Step, Divider, Message, Header, Segment, Card, Grid } from 'semantic-ui-react';
+import { Button, Form, Step, Divider, Message, Header, Segment, Card, Grid, Table, Icon } from 'semantic-ui-react';
 
 // sub-components
 import Menu from './Menu';
@@ -27,6 +27,12 @@ class Stepper extends Component {
         case 'next': {
           if (activeStep < 2) {
             this.setState({ activeStep: activeStep + 1 });
+          }
+          return;
+        }
+        case 'reset' : {
+          if (activeStep === 2) {
+            this.setState({ activeStep: 0});
           }
           return;
         }
@@ -68,7 +74,33 @@ class Stepper extends Component {
             </Segment>
             </center>
             <Message header='Tenting Color' size='large' content='Decide which color tenting your group would want to do.'/>
-            <TentingDates2018 />
+            <Table celled inverted selectable unstackable>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Color</Table.HeaderCell>
+                  <Table.HeaderCell>Start Date</Table.HeaderCell>
+                  <Table.HeaderCell>End Date</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+
+              <Table.Body>
+                <Table.Row>
+                  <Table.Cell>Black</Table.Cell>
+                  <Table.Cell>January 12th, 2018 at 11PM</Table.Cell>
+                  <Table.Cell textAlign='right'>January 23rd, 2018 at 11PM</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>Blue</Table.Cell>
+                  <Table.Cell>January 23rd, 2018 at 11PM</Table.Cell>
+                  <Table.Cell textAlign='right'>February 3rd, 2018 at 11PM </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>White</Table.Cell>
+                  <Table.Cell>February 3rd, 2018 at 11PM </Table.Cell>
+                  <Table.Cell textAlign='right'>February 14th, 2018 at 12PM</Table.Cell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
            </div>
           }
           { activeStep === 1 &&
@@ -79,7 +111,25 @@ class Stepper extends Component {
           }
           { activeStep === 2 &&
              <div>
-              <Menu/>
+             <img src="https://kenan.ethics.duke.edu/wp-content/uploads/2017/02/tenting-01-300x300.png"/>
+             <Segment.Group>
+                <Segment><h1>Tenting Essentials</h1></Segment>
+                <Segment.Group>
+                  <Segment as='h5' attached>1. Tent </Segment>
+                  <Message warning attached='bottom'>
+                    <Icon name='warning' />
+                        Fire Safe, Large 12 Person Tent
+                  </Message>
+                  <Segment as='h5' attached>2. Palletes </Segment>
+                  <Message attached> (Goes under the tents) </Message>
+                  <Segment as='h5' attached>3. Tarp </Segment>
+                  <Message attached inverted> (Over the tent, helps with heat and weather) </Message>
+                  <Segment as='h5' attached>4. 0 Degree Sleeping Bags </Segment>
+                  <Message attached inverted> (It gets cold in K-Ville) </Message>
+                  <Segment as='h5' attached>5. Flashlights, Lanterns </Segment>
+                  <Message attached inverted> (For the fun late nights in K-Ville)</Message>
+                </Segment.Group>
+              </Segment.Group>
              </div>
           }
         <br />
@@ -92,7 +142,7 @@ class Stepper extends Component {
           <Button.Group fluid>
             <Button id="back" content='Back' icon='left arrow' labelPosition='left' color="red" onClick={this.handleButtonClick} />
             <Button.Or />
-            <Button id="signup" content='Finish' icon='sign in' labelPosition='right' color="green" onClick={this.handleButtonClick} />
+            <Button id="signup" content='Reset' icon='sign in' labelPosition='right' color="green" onClick={this.handleButtonClick} />
           </Button.Group>
         }
         <br />
