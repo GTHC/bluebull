@@ -45,7 +45,7 @@ class App extends Component {
   //this countinously checks if the user is logged in or not on the platform
   authListner = () => {
     const { login, logut, getUser, user } = this.props;
-    firebase.auth().onAuthStateChanged(userData => {
+   firebase.auth().onAuthStateChanged(userData => {
       if (userData) {
         // login(userData);
         getUser(userData.email);
